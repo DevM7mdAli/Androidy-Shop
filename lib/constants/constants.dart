@@ -1,14 +1,11 @@
-
 import 'package:flutter/material.dart';
 
-
 //! for putting hex values you need to replace # with 0x
-const cBackGroundColor = Color(0x448AFF);
-const cSecondryBackGroundColor = Color(0xF5F5F5);
-const cPriceBoxColor = Color(0xFFC107);
-const cPrimaryCardBackColor = Color(0xFFFFFFFF);
-const cTextColor = Color(0x212121);
-const cTextSecondryColor = Color(0xBDBDBD);
+const cBackGroundColor = Color(0xFF4caf50);
+const cSecondaryBackGroundColor = Color(0xFFF5F5F5);
+const cPriceBoxColor = Color(0xFFFFC107);
+const cPrimaryCardBackColor = Color(0xFFFFFFFFFF);
+const cTextColor = Color(0xFF212121);
+const cTextSecondaryColor = Color(0xFFBDBDBD);
 
-
-const cDefaultPadding = 20;
+const cDefaultPadding = 20.0;
