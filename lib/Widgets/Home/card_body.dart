@@ -1,7 +1,6 @@
 import 'package:androidyshop/constants/assets.dart';
 import 'package:androidyshop/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CardBody extends StatelessWidget {
   const CardBody({super.key});
@@ -53,7 +52,10 @@ class CardBody extends StatelessWidget {
               height: 145,
               width: size.width - 150,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //* empty spaces
+                  Spacer(),
                   //? name of product
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: cDefaultPadding),
@@ -65,25 +67,36 @@ class CardBody extends StatelessWidget {
                       ),
                     ),
                   ),
+                  //* empty spaces
+                  Spacer(),
                   //? sub info
                   Opacity(
                     opacity: 0.7,
-                    child: Text(
-                      "سماعات",
-                      style: TextStyle(fontSize: 15),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: cDefaultPadding),
+                      child: Text(
+                        "سماعات",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
                   ),
+                  //* empty spaces
+                  Spacer(),
                   //? Price
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: cDefaultPadding * 1.5,
-                      vertical: cDefaultPadding / 5,
+                  Padding(
+                    padding: const EdgeInsets.all(cDefaultPadding),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: cDefaultPadding * 1.5,
+                        vertical: cDefaultPadding / 5,
+                      ),
+                      decoration: BoxDecoration(
+                        color: cPriceBoxColor,
+                        borderRadius: BorderRadius.circular(22),
+                      ),
+                      child: Text("السعر \$970"),
                     ),
-                    decoration: BoxDecoration(
-                      color: cPriceBoxColor,
-                      borderRadius: BorderRadius.circular(22),
-                    ),
-                    child: Text("السعر \$970"),
                   )
                 ],
               ),

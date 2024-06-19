@@ -30,7 +30,10 @@ class _HomeBodyState extends State<HomeBody> {
                         topRight: Radius.circular(20),
                       )),
                 ),
-                CardBody()
+                ListView.builder(
+                  itemCount: 8,
+                  itemBuilder: (context, index) => CardBody(),
+                ),
               ],
             ),
           ),

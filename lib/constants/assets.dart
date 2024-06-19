@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 const a7 = "assets/images/A7.png";
 const a53 = "assets/images/A53.png";
 const gbfe = "assets/images/GBFE.png";
