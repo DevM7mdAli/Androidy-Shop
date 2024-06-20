@@ -1,6 +1,7 @@
 import 'package:androidyshop/Widgets/Home/card_body.dart';
 import 'package:androidyshop/constants/constants.dart';
 import 'package:androidyshop/models/product.dart';
+import 'package:androidyshop/screens/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -16,34 +17,41 @@ class _HomeBodyState extends State<HomeBody> {
   Widget build(BuildContext context) {
     return SafeArea(
         bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.only(top: cDefaultPadding / 2),
-          child: Column(
-            children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 65),
-                      decoration: const BoxDecoration(
-                          color: cBackGroundColor,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          )),
+        child: Column(
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 65),
+                    decoration: const BoxDecoration(
+                        color: cBackGroundColor,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        )),
+                  ),
+                  ListView.builder(
+                    itemCount: products.length,
+                    itemBuilder: (context, index) => CardBody(
+                      itemIndex: index,
+                      product: products[index],
+                      press: (indexItem) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductPage(
+                              productIndex: index,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    ListView.builder(
-                      itemCount: products.length,
-                      itemBuilder: (context, index) => CardBody(
-                        itemIndex: index,
-                        product: products[index],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }

@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
         style: GoogleFonts.almarai(),
       ),
       elevation: 0,
+      forceMaterialTransparency: true,
       actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
     );
   }
