@@ -1,9 +1,12 @@
-import 'package:androidyshop/constants/assets.dart';
 import 'package:androidyshop/constants/constants.dart';
+import 'package:androidyshop/models/product.dart';
 import 'package:flutter/material.dart';
 
 class CardBody extends StatelessWidget {
-  const CardBody({super.key});
+  const CardBody({super.key, this.itemIndex, required this.product});
+
+  final int? itemIndex;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class CardBody extends StatelessWidget {
               height: 160,
               width: 150,
               child: Image.asset(
-                gbfe,
+                product.image,
                 fit: BoxFit.contain,
               ),
             ),
@@ -55,12 +58,13 @@ class CardBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //* empty spaces
-                  Spacer(),
+                  const Spacer(),
                   //? name of product
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: cDefaultPadding),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: cDefaultPadding),
                     child: Text(
-                      "جالاكسي بدز",
+                      product.title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -68,7 +72,7 @@ class CardBody extends StatelessWidget {
                     ),
                   ),
                   //* empty spaces
-                  Spacer(),
+                  const Spacer(),
                   //? sub info
                   Opacity(
                     opacity: 0.7,
@@ -76,18 +80,26 @@ class CardBody extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: cDefaultPadding),
                       child: Text(
-                        "سماعات",
-                        style: TextStyle(fontSize: 15),
+                        product.type,
+                        style: const TextStyle(fontSize: 15),
                       ),
                     ),
                   ),
+                  Opacity(
+                    opacity: 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: cDefaultPadding),
+                      child: Text(product.subTitle),
+                    ),
+                  ),
                   //* empty spaces
-                  Spacer(),
+                  const Spacer(),
                   //? Price
                   Padding(
                     padding: const EdgeInsets.all(cDefaultPadding),
                     child: Container(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: cDefaultPadding * 1.5,
                         vertical: cDefaultPadding / 5,
                       ),
@@ -95,7 +107,7 @@ class CardBody extends StatelessWidget {
                         color: cPriceBoxColor,
                         borderRadius: BorderRadius.circular(22),
                       ),
-                      child: Text("السعر \$970"),
+                      child: Text("السعر \$${product.price}"),
                     ),
                   )
                 ],
