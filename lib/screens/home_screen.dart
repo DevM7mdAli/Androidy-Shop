@@ -1,5 +1,5 @@
+import 'package:androidyshop/Widgets/Home/home_body.dart';
 import 'package:flutter/material.dart';
-import '../Widgets/Home/home_body.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: homeAppBar(), body: HomeBody());
+    return Scaffold(appBar: homeAppBar(), body: const HomeBody());
   }
 
   AppBar homeAppBar() {

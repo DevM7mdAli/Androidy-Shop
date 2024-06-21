@@ -1,4 +1,4 @@
-import 'package:androidyshop/Widgets/Produc/detail_body.dart';
+import 'package:androidyshop/Widgets/Product/detail_body.dart';
 import 'package:androidyshop/constants/constants.dart';
 import 'package:androidyshop/models/product.dart';
 import 'package:flutter/material.dart';

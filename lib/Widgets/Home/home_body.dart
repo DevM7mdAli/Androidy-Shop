@@ -3,7 +3,6 @@ import 'package:androidyshop/constants/constants.dart';
 import 'package:androidyshop/models/product.dart';
 import 'package:androidyshop/screens/product_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -23,7 +22,7 @@ class _HomeBodyState extends State<HomeBody> {
               child: Stack(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 65),
+                    margin: const EdgeInsets.only(top: 65),
                     decoration: const BoxDecoration(
                         color: cBackGroundColor,
                         borderRadius: BorderRadius.only(

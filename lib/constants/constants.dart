@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 const cBackGroundColor = Color(0xFF4caf50);
 const cSecondaryBackGroundColor = Color(0xFFF5F5F5);
 const cPriceBoxColor = Color(0xFFFFC107);
-const cPrimaryCardBackColor = Color(0xFFFFFFFFFF);
+const cPrimaryCardBackColor = Color(0xFFFFFFFF);
 const cTextColor = Color(0xFF212121);
 const cTextSecondaryColor = Color(0xFFBDBDBD);
 

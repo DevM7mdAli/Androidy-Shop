@@ -72,7 +72,7 @@ class CardBody extends StatelessWidget {
                           horizontal: cDefaultPadding),
                       child: Text(
                         product.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
