@@ -1,11 +1,13 @@
 import 'package:androidyshop/constants/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:developer' as developer;
 
 class NavDrawer extends StatelessWidget {
-  const NavDrawer({super.key});
+  const NavDrawer({super.key, required this.user});
+
+  final User? user;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class NavDrawer extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             accountName: const Text("الاسم: Mohammed Alajmi"),
-            accountEmail: const Text("البريد: Mohammed-Alajmi@outlook.sa"),
+            accountEmail: Text("البريد: ${user?.email}"),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(
@@ -57,11 +59,11 @@ class NavDrawer extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
-            title: const Text("خروج"),
+            title: const Text("تسجيل خروج"),
             iconColor: cBackGroundColor,
             textColor: cBackGroundColor,
             onTap: () {
-              SystemNavigator.pop();
+              FirebaseAuth.instance.signOut();
             },
           ),
         ],

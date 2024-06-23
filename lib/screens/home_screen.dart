@@ -1,5 +1,6 @@
 import 'package:androidyshop/Widgets/Home/home_body.dart';
 import 'package:androidyshop/Widgets/drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,10 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavDrawer(),
+      drawer: NavDrawer(user: user),
       appBar: homeAppBar(),
       body: const HomeBody(),
     );

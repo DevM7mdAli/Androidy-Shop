@@ -7,3 +7,4 @@ const gw4 = "assets/images/GW4.png";
 const st9u = "assets/images/ST9U.png";
 const op9 = "assets/images/OP9.png";
 const op10 = "assets/images/OP10.png";
+const appLogo = "assets/images/AndroShop.png";
