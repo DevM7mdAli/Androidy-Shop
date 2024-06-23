@@ -16,7 +16,7 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
 
   Future signUp() async {
     try {
-      if (confirmPassword()) {
+      if (validateToProcess()) {
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -37,8 +37,15 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
     }
   }
 
-  bool confirmPassword() {
-    return _confirmPasswordValue.text.trim() == _passwordValue.text.trim();
+  bool validateToProcess() {
+    if (_confirmPasswordValue.text.trim() == _passwordValue.text.trim() &&
+        _passwordValue.text.length >= 6 &&
+        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(_emailValue.text.trim())) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   void goToLogIn() {
@@ -63,8 +70,10 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 10,
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -72,7 +81,9 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 4),
+                      horizontal: 10.0,
+                      vertical: 4,
+                    ),
                     child: TextField(
                       controller: _emailValue,
                       decoration: const InputDecoration(
@@ -84,8 +95,10 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 10,
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -93,7 +106,9 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 4),
+                      horizontal: 10.0,
+                      vertical: 4,
+                    ),
                     child: TextField(
                       controller: _passwordValue,
                       obscureText: true,
@@ -107,8 +122,10 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 10,
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -116,7 +133,9 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 2),
+                      horizontal: 10.0,
+                      vertical: 2,
+                    ),
                     child: TextField(
                       controller: _confirmPasswordValue,
                       obscureText: true,
@@ -134,7 +153,10 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
 
           //! log in button
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 10,
+            ),
             child: InkWell(
               onTap: signUp,
               child: Container(
@@ -146,7 +168,10 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
                 child: const Center(
                   child: Text(
                     "تسجيل",
-                    style: TextStyle(color: Colors.black, fontSize: 22),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                    ),
                   ),
                 ),
               ),
@@ -160,16 +185,20 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
             children: [
               const Text(
                 "لديك حساب؟",
-                style: TextStyle(color: Colors.black, fontSize: 17),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                ),
               ),
               InkWell(
                 onTap: goToLogIn,
                 child: const Text(
                   "  سجل دخول",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

@@ -54,8 +54,10 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 10,
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -63,7 +65,9 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 4),
+                      horizontal: 10.0,
+                      vertical: 4,
+                    ),
                     child: TextField(
                       controller: _emailValue,
                       decoration: const InputDecoration(
@@ -75,8 +79,10 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 10,
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -84,7 +90,9 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 4),
+                      horizontal: 10.0,
+                      vertical: 4,
+                    ),
                     child: TextField(
                       controller: _passwordValue,
                       obscureText: true,
@@ -102,7 +110,10 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
 
           //! log in button
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 10,
+            ),
             child: InkWell(
               onTap: signIn,
               child: Container(
@@ -114,7 +125,10 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
                 child: const Center(
                   child: Text(
                     "تسجيل الدخول",
-                    style: TextStyle(color: Colors.black, fontSize: 22),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                    ),
                   ),
                 ),
               ),
@@ -128,16 +142,20 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
             children: [
               const Text(
                 "ليس لديك حساب؟",
-                style: TextStyle(color: Colors.black, fontSize: 17),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                ),
               ),
               InkWell(
                 onTap: goToSignUp,
                 child: const Text(
                   " انشأ حسابك الآن",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

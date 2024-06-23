@@ -83,12 +83,10 @@ class DetailBody extends StatelessWidget {
                             Row(
                               children: [
                                 Text("الرقم التسلسلي: #${products[pro].id}"),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: 6, right: 65),
-                                  child:
-                                      Text("الشركة: ${products[pro].company}"),
+                                SizedBox(
+                                  width: size.width / 10,
                                 ),
+                                Text("الشركة: ${products[pro].company}"),
                               ],
                             ),
                             Text("النوع: ${products[pro].type}"),

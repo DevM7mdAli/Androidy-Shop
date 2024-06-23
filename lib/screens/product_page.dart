@@ -12,7 +12,9 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: cBackGroundColor,
       appBar: detailBar(context),
-      body: DetailBody(pro: productIndex),
+      body: SingleChildScrollView(
+        child: DetailBody(pro: productIndex),
+      ),
     );
   }
 
