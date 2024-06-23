@@ -2,39 +2,47 @@ import 'package:androidyshop/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginInputProcess extends StatefulWidget {
-  const LoginInputProcess({super.key});
+class SignUpInputProcess extends StatefulWidget {
+  const SignUpInputProcess({super.key});
 
   @override
-  State<LoginInputProcess> createState() => _LoginInputProcessState();
+  State<SignUpInputProcess> createState() => _SignUpInputProcessState();
 }
 
-class _LoginInputProcessState extends State<LoginInputProcess> {
+class _SignUpInputProcessState extends State<SignUpInputProcess> {
   final _emailValue = TextEditingController();
   final _passwordValue = TextEditingController();
+  final _confirmPasswordValue = TextEditingController();
 
-  Future signIn() async {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(
-          color: cBackGroundColor,
-        ),
-      ),
-    );
-
+  Future signUp() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailValue.text.trim(), password: _passwordValue.text.trim());
+      if (confirmPassword()) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => const Center(
+            child: CircularProgressIndicator(
+              color: cBackGroundColor,
+            ),
+          ),
+        );
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailValue.text.trim(),
+          password: _passwordValue.text.trim(),
+        );
+        Navigator.of(context).pushNamed('/');
+      }
     } catch (e) {
-      print("an error happened inside the signIn method");
+      print("Error in Sign Up");
     }
-    Navigator.of(context, rootNavigator: true).pop();
   }
 
-  void goToSignUp() {
-    Navigator.of(context).pushReplacementNamed("signUpScreen");
+  bool confirmPassword() {
+    return _confirmPasswordValue.text.trim() == _passwordValue.text.trim();
+  }
+
+  void goToLogIn() {
+    Navigator.of(context).pushReplacementNamed("logInScreen");
   }
 
   @override
@@ -42,6 +50,7 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
     super.dispose();
     _emailValue.dispose();
     _passwordValue.dispose();
+    _confirmPasswordValue.dispose();
   }
 
   @override
@@ -97,6 +106,29 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
                   ),
                 ),
               ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: cSecondaryBackGroundColor,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 2),
+                    child: TextField(
+                      controller: _confirmPasswordValue,
+                      obscureText: true,
+                      obscuringCharacter: '*',
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        labelText: "تأكيد الرقم السري",
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
 
@@ -104,7 +136,7 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
             child: InkWell(
-              onTap: signIn,
+              onTap: signUp,
               child: Container(
                 padding: const EdgeInsets.all(22),
                 decoration: BoxDecoration(
@@ -113,7 +145,7 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
                 ),
                 child: const Center(
                   child: Text(
-                    "تسجيل الدخول",
+                    "تسجيل",
                     style: TextStyle(color: Colors.black, fontSize: 22),
                   ),
                 ),
@@ -127,13 +159,13 @@ class _LoginInputProcessState extends State<LoginInputProcess> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "ليس لديك حساب؟",
+                "لديك حساب؟",
                 style: TextStyle(color: Colors.black, fontSize: 17),
               ),
               InkWell(
-                onTap: goToSignUp,
+                onTap: goToLogIn,
                 child: const Text(
-                  " انشأ حسابك الآن",
+                  "  سجل دخول",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,

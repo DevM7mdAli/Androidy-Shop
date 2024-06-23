@@ -3,7 +3,9 @@ import 'package:androidyshop/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class TopPicture extends StatelessWidget {
-  const TopPicture({super.key});
+  const TopPicture({super.key, required this.title, required this.subtitle});
+
+  final String title, subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +27,18 @@ class TopPicture extends StatelessWidget {
             width: 200,
             child: ClipOval(child: Image.asset(appLogo)),
           ),
-          const Column(
+          Column(
             children: [
               Text(
-                "تسجيل الدخول",
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                title,
+                style:
+                    const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
               ),
               Opacity(
                 opacity: 0.7,
                 child: Text(
-                  "اهلا سعيدين برجوعك لاستخدام التطبيق",
-                  style: TextStyle(fontSize: 15),
+                  subtitle,
+                  style: const TextStyle(fontSize: 15),
                 ),
               ),
             ],

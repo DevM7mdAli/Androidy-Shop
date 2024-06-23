@@ -12,7 +12,10 @@ class LogInBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            TopPicture(),
+            TopPicture(
+              title: "تسجيل الدخول",
+              subtitle: "اهلا سعيدين برجوعك لاستخدام التطبيق",
+            ),
             LoginInputProcess(),
           ],
         ),

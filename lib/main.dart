@@ -1,5 +1,8 @@
 import 'package:androidyshop/constants/constants.dart';
 import 'package:androidyshop/screens/auth.dart';
+import 'package:androidyshop/screens/home_screen.dart';
+import 'package:androidyshop/screens/log_in.dart';
+import 'package:androidyshop/screens/sign_up_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,7 +39,12 @@ class App extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: const Auth(),
+      routes: {
+        '/': (context) => const Auth(),
+        'homeScreen': (context) => const HomeScreen(),
+        'signUpScreen': (context) => const SignUpScreen(),
+        'logInScreen': (context) => const LogIn(),
+      },
     );
   }
 }
