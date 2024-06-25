@@ -1,16 +1,29 @@
-# androidyshop
+# Androidy-Shop
 
-A new Flutter project.
+Androidy-Shop is a shopping app developed using Flutter and Firebase, designed to get in-depth information on every product. Containing specifications Androidy-Shop provides comprehensive details to help you choose the best products for your needs.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Sign-in and Sign-up**: Androidy-Shop allows users to view products.
 
-A few resources to get you started if this is your first Flutter project:
+- **Seeing details of the products**: Users can access product info for all available products.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Androidy-Shop Interfaces
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div style="display: flex; flex-wrap: wrap;">
+  <img src="./assets/login screen.png" height="400" style=" padding: 8px 10px;">
+  <img src="./assets/sign up screen.png" height="400" style=" padding: 8px 10px;">
+  <img src="./assets/main home screen.png" height="400" style=" padding: 8px 10px;">
+  <img src="./assets/side bar.png" height="400" style=" padding: 8px 10px;">
+  <img src="./assets/product details screen.png" height="400" style=" padding: 8px 10px;">
+</div>
+
+## Installation
+
+To run Androidy-Shop on your device, follow these steps:
+
+1. Clone this repo to your local machine.
+
+2. Install Flutter on your computer.
+
+3. Run the app on your preferred emulator or physical device using Flutter's development tools.
