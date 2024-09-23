@@ -5,9 +5,10 @@ import 'package:share_plus/share_plus.dart';
 import 'dart:developer' as developer;
 
 class NavDrawer extends StatelessWidget {
-  const NavDrawer({super.key, required this.user});
+  const NavDrawer({super.key, required this.user, required this.userInfo});
 
   final User? user;
+  final String? userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +17,12 @@ class NavDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: const Text("الاسم: Mohammed Alajmi"),
+            accountName: Text("الاسم: ${userInfo}"),
             accountEmail: Text("البريد: ${user?.email}"),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(
-                  "https://avatars.githubusercontent.com/u/74423891?v=4",
+                  "https://t3.ftcdn.net/jpg/03/53/11/00/360_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg",
                   width: 90,
                   height: 90,
                   fit: BoxFit.fill,

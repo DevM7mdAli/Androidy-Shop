@@ -1,6 +1,7 @@
 import 'package:androidyshop/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpInputProcess extends StatefulWidget {
   const SignUpInputProcess({super.key});
@@ -11,8 +12,10 @@ class SignUpInputProcess extends StatefulWidget {
 
 class _SignUpInputProcessState extends State<SignUpInputProcess> {
   final _emailValue = TextEditingController();
+  final _nameOfUser = TextEditingController();
   final _passwordValue = TextEditingController();
   final _confirmPasswordValue = TextEditingController();
+  final db = FirebaseFirestore.instance;
 
   Future signUp() async {
     try {
@@ -26,10 +29,17 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
             ),
           ),
         );
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailValue.text.trim(),
           password: _passwordValue.text.trim(),
         );
+
+        await db.collection('users').doc(userCredential.user?.uid).set({
+          'name': _nameOfUser.text.trim(),
+        });
+
         Navigator.of(context).pushNamed('/');
       }
     } catch (e) {
@@ -56,6 +66,7 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
   void dispose() {
     super.dispose();
     _emailValue.dispose();
+    _nameOfUser.dispose();
     _passwordValue.dispose();
     _confirmPasswordValue.dispose();
   }
@@ -64,146 +75,175 @@ class _SignUpInputProcessState extends State<SignUpInputProcess> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 400,
-      child: Column(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+      child: Scrollbar(
+        child: SingleChildScrollView(
+          child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 10,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: cSecondaryBackGroundColor,
-                  ),
-                  child: Padding(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 4,
+                      horizontal: 8.0,
+                      vertical: 10,
                     ),
-                    child: TextField(
-                      controller: _emailValue,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        labelText: "البريد الإلكتروني",
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: cSecondaryBackGroundColor,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                          vertical: 4,
+                        ),
+                        child: TextField(
+                          controller: _emailValue,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "البريد الإلكتروني",
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 10,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: cSecondaryBackGroundColor,
-                  ),
-                  child: Padding(
+                  Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 4,
+                      horizontal: 8.0,
+                      vertical: 10,
                     ),
-                    child: TextField(
-                      controller: _passwordValue,
-                      obscureText: true,
-                      obscuringCharacter: '*',
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        labelText: "الرقم السري",
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: cSecondaryBackGroundColor,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                          vertical: 4,
+                        ),
+                        child: TextField(
+                          controller: _nameOfUser,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "الاسم",
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 10,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: cSecondaryBackGroundColor,
-                  ),
-                  child: Padding(
+                  Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 2,
+                      horizontal: 8.0,
+                      vertical: 10,
                     ),
-                    child: TextField(
-                      controller: _confirmPasswordValue,
-                      obscureText: true,
-                      obscuringCharacter: '*',
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        labelText: "تأكيد الرقم السري",
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: cSecondaryBackGroundColor,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                          vertical: 4,
+                        ),
+                        child: TextField(
+                          controller: _passwordValue,
+                          obscureText: true,
+                          obscuringCharacter: '*',
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "الرقم السري",
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                      vertical: 10,
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: cSecondaryBackGroundColor,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                          vertical: 2,
+                        ),
+                        child: TextField(
+                          controller: _confirmPasswordValue,
+                          obscureText: true,
+                          obscuringCharacter: '*',
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "تأكيد الرقم السري",
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
 
-          //! log in button
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 10,
-            ),
-            child: InkWell(
-              onTap: signUp,
-              child: Container(
-                padding: const EdgeInsets.all(22),
-                decoration: BoxDecoration(
-                  color: cPriceBoxColor,
-                  borderRadius: BorderRadius.circular(10),
+              //! log in button
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 10,
                 ),
-                child: const Center(
-                  child: Text(
-                    "تسجيل",
+                child: InkWell(
+                  onTap: signUp,
+                  child: Container(
+                    padding: const EdgeInsets.all(22),
+                    decoration: BoxDecoration(
+                      color: cPriceBoxColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "تسجيل",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "لديك حساب؟",
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 22,
+                      fontSize: 17,
                     ),
                   ),
-                ),
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "لديك حساب؟",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                ),
-              ),
-              InkWell(
-                onTap: goToLogIn,
-                child: const Text(
-                  "  سجل دخول",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: goToLogIn,
+                    child: const Text(
+                      "  سجل دخول",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
